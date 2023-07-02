@@ -1,18 +1,26 @@
 #include <Arduino.h>
 
 // put function declarations here:
-int myFunction(int, int);
+void flash_led(void);
 
 void setup() {
   // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  pinMode(PC6, OUTPUT);
+  pinMode(PA0, OUTPUT);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+  flash_led();
 }
 
 // put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+void flash_led(void) 
+{
+  digitalWrite(PC6, HIGH);
+  digitalWrite(PA0, HIGH);
+  delay(100);
+  digitalWrite(PC6, LOW);
+  digitalWrite(PA0, LOW);
+  delay(100);
 }
