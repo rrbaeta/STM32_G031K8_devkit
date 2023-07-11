@@ -7,11 +7,15 @@ void setup() {
   // put your setup code here, to run once:
   pinMode(PC6, OUTPUT);
   pinMode(PA0, OUTPUT);
+  pinMode(PB6, INPUT);
+  pinMode(PB7, OUTPUT);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   flash_led();
+
+  digitalWrite(PB7, !digitalRead(PB6));
 }
 
 // put function definitions here:
