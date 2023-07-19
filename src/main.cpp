@@ -1,19 +1,25 @@
 #include <Arduino.h>
 
-// put function declarations here:
+#include "isr.hpp"
+#include "buttons.hpp"
+
+//function declarations
 void flash_led(void);
 
-void setup() {
-  // put your setup code here, to run once:
+void setup() 
+{
   pinMode(PC6, OUTPUT);
   pinMode(PA0, OUTPUT);
   pinMode(PB6, INPUT);
   pinMode(PB7, OUTPUT);
+
+  isr_init();
 }
 
-void loop() {
+void loop() 
+{
   // put your main code here, to run repeatedly:
-  flash_led();
+  //flash_led();
 
   digitalWrite(PB7, !digitalRead(PB6));
 }
