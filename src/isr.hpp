@@ -8,7 +8,6 @@ struct Timers
     bool t_1_s;
 };
 
-
 // function prototypes
 void isr_init(void);
 
