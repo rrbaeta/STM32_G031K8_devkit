@@ -28,31 +28,61 @@ void setup()
 
 void loop() 
 {
+  static bool flag_100_ms = false;
+  static bool flag_1_s = false;
+
+  //set timer flags so they are not reset mid loop
+  flag_100_ms = timers.t_100_ms;
+  flag_1_s = timers.t_1_s;
 
   //Read Inputs
+  if(flag_100_ms)
+  {
+
+  }
+
+  if(flag_1_s)
+  {
+    
+  }
 
   //Calculations
+  if(flag_100_ms)
+  {
+
+  }
+
+  if(flag_1_s)
+  {
+    
+  }
 
   //Set outputs
+  if(flag_100_ms)
+  {
+    digitalWrite(PB7, !digitalRead(PB6));
+    flash_led();
+  }
 
+  if(flag_1_s)
+  {
 
+  }
 
-
-
-
-  // put your main code here, to run repeatedly:
-  flash_led();
-
-  digitalWrite(PB7, !digitalRead(PB6));
+  //reset timer flags
+  flag_100_ms = false;
+  timers.t_100_ms = false;
+  flag_1_s = false;
+  timers.t_1_s = false;
 }
 
 // put function definitions here:
 void flash_led(void) 
 {
-  //digitalWrite(PC6, HIGH);
-  digitalWrite(PA0, HIGH);
-  delay(100);
-  //digitalWrite(PC6, LOW);
-  digitalWrite(PA0, LOW);
-  delay(100);
+  static bool LED_state = false;
+
+  digitalWrite(PC6, !LED_state);
+  digitalWrite(PA0, LED_state);
+
+  LED_state = !LED_state;
 }

@@ -3,24 +3,34 @@
 #include "isr.hpp"
 
 HardwareTimer timer_1(TIM1);
+Timers timers = {0};
 
-void timer_1_isr(void)      //10ms
+void timer_1_isr(void)      //100ms interrupt
 {
-    Serial.println("ISR");
+    volatile static uint8_t counter_1_s = 10;
 
-    volatile static bool ledOn = false;
-    ledOn = !ledOn;
-    digitalWrite(PC6, (ledOn ? HIGH : LOW));
+    timers.t_100_ms = true;
 
-    timer_1.resume(); // Start
+    counter_1_s--;
+    if (!counter_1_s)
+    {
+        timers.t_1_s = true;
+        counter_1_s = 10;
+    }
 }
 
 void isr_init(void)
 {
     // Configure timer
-    timer_1.setPrescaleFactor(64); // Set prescaler to 68 => timer frequency = 64MHz/64 = 1000000 Hz
-    timer_1.setOverflow(10000); // Set overflow to 10000 => timer frequency = 1000000 Hz / 10000 = 100 Hz
+    timer_1.setOverflow(10, HERTZ_FORMAT); //10 Hz 100ms 
     timer_1.attachInterrupt(timer_1_isr);
     timer_1.refresh(); // Make register changes take effect
     timer_1.resume(); // Start
+    
+    Serial.print("Hz: ");
+    Serial.println(timer_1.getTimerClkFreq(), DEC);
+    Serial.print("Prescaler: ");
+    Serial.println(timer_1.getPrescaleFactor(), DEC);
+    Serial.print("Overflow: ");
+    Serial.println(timer_1.getOverflow(), DEC);
 }
