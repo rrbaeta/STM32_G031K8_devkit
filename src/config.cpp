@@ -1,6 +1,8 @@
 #include <Arduino.h>
 
-void gpio_config()
+#include "config.hpp"
+
+void gpio_config(void)
 {
   pinMode(PC6, OUTPUT);
   pinMode(PA0, OUTPUT);

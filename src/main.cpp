@@ -1,23 +1,22 @@
 #include <Arduino.h>
 
+#include "config.hpp"
 #include "isr.hpp"
 #include "buttons.hpp"
 
+//variable declarations
 static bool flag_10_ms = false;
 static bool flag_100_ms = false;
 static bool flag_1_s = false;
 HardwareSerial serial();
 
-//function declarations
+//function prototypes
 void set_local_timer_flags(void);
 void flash_led(void);
 
 void setup() 
 {
-  pinMode(PC6, OUTPUT);
-  pinMode(PA0, OUTPUT);
-  pinMode(PB6, INPUT);
-  pinMode(PB7, OUTPUT);
+  gpio_config();
 
   digitalWrite(PC6, LOW);
 
@@ -119,7 +118,6 @@ void set_local_timer_flags(void)
   }
 }
 
-// put function definitions here:
 void flash_led(void) 
 {
   static bool LED_state = false;
