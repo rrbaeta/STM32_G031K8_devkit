@@ -8,6 +8,8 @@
 static bool flag_10_ms = false;
 static bool flag_100_ms = false;
 static bool flag_1_s = false;
+
+//Peripherals
 HardwareSerial serial();
 
 //function prototypes
