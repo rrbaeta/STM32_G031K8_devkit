@@ -3,9 +3,9 @@
 
 struct Timers
 {
-    bool t_10_ms;      //not in use
-    bool t_100_ms;
-    bool t_1_s;
+    volatile bool t_10_ms;      //not in use
+    volatile bool t_100_ms;
+    volatile bool t_1_s;
 };
 
 //Global variables
