@@ -1,6 +1,10 @@
 #ifndef BUTTONS_HPP
 #define BUTTONS_HPP
 
+#include <Arduino.h>
+
+#define BTN_1               !PB6
+
 struct Buttons
 {
     bool short_press;
@@ -8,10 +12,11 @@ struct Buttons
     bool toggle_press;      //reset where used
 
     bool old_short_press;
+    uint8_t debounce_counter = 5;
 };
 
 // function prototypes
-void debouce_buttons(Buttons &button, bool current_state);
+void read_buttons(void);
 
 
 #endif /* BUTTONS_HPP */

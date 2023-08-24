@@ -40,7 +40,7 @@ void loop()
   //Read Inputs
   if(flag_10_ms)
   {
-  
+    read_buttons();
   }
 
   if(flag_100_ms)
@@ -72,7 +72,7 @@ void loop()
   //Set outputs
   if(flag_10_ms)
   {
-    digitalWrite(PB7, !digitalRead(PB6));
+    // digitalWrite(PB7, !digitalRead(PB6));
   }
 
   if(flag_100_ms)
