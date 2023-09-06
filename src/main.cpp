@@ -127,8 +127,10 @@ void operate_leds(void)
 {
   if (button_1.toggle_press)
   {
+    button_1.toggle_press = false;
   }
-  else if (button_1.short_press)
+
+  if (button_1.short_press)
   {
     static bool led_state = false;
 
