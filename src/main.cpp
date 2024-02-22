@@ -1,4 +1,6 @@
 #include <Arduino.h>
+#include <LiquidCrystal.h>
+#include <Wire.h>
 
 #include "config.hpp"
 #include "isr.hpp"
@@ -11,6 +13,7 @@ static bool flag_1_s = false;
 
 // Peripherals
 HardwareSerial serial();
+LiquidCrystal lcd(LCD_RS, LCD_EN, LCD_DB4, LCD_DB5, LCD_DB6, LCD_DB7);
 
 // function prototypes
 void set_local_timer_flags(void);
@@ -32,6 +35,10 @@ void setup()
   isr_init();
 
   // digitalWrite(PB7, false);
+
+  lcd.begin(20, 2);
+  lcd.home();
+  lcd.print("Hello World");
 }
 
 void loop()
