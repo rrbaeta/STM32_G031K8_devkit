@@ -3,8 +3,6 @@
 
 #include <Arduino.h>
 
-#define BTN_1 PB6
-
 struct Buttons
 {
     bool short_press;

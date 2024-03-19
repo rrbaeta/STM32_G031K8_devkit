@@ -7,6 +7,10 @@
 #define LCD_DB6 PB9
 #define LCD_DB7 PB5
 #define LCD_EN PB2
+#define LCD_RW PB0
+
+#define BTN_1 PB6
+#define ON_BOARD_LED PC6
 
 void gpio_config(void);
 

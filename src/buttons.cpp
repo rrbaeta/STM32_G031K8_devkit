@@ -1,4 +1,5 @@
 #include "buttons.hpp"
+#include "config.hpp"
 
 #define DEBOUNCE_COUNTS 150
 #define PRESSED_COUNTS 5

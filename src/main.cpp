@@ -13,7 +13,7 @@ static bool flag_1_s = false;
 
 // Peripherals
 HardwareSerial serial();
-LiquidCrystal lcd(LCD_RS, LCD_EN, LCD_DB4, LCD_DB5, LCD_DB6, LCD_DB7);
+LiquidCrystal lcd(LCD_RS, LCD_RW, LCD_EN, LCD_DB4, LCD_DB5, LCD_DB6, LCD_DB7);
 
 // function prototypes
 void set_local_timer_flags(void);
@@ -36,9 +36,11 @@ void setup()
 
   // digitalWrite(PB7, false);
 
-  lcd.begin(20, 2);
+  lcd.begin(16, 2);
   lcd.home();
-  lcd.print("Hello World");
+
+  lcd.setCursor(0, 0); /* Set cursor to column 0 row 0 */
+  lcd.print("Boa Noite");
 }
 
 void loop()
@@ -77,11 +79,10 @@ void loop()
   {
     operate_leds();
   }
-  // digitalWrite(PC6, digitalRead(PB6));
 
   if (flag_100_ms)
   {
-    flash_led();
+    // flash_led();
   }
 
   if (flag_1_s)
@@ -125,7 +126,7 @@ void flash_led(void)
 {
   static bool LED_state = false;
 
-  digitalWrite(PA0, !LED_state);
+  digitalWrite(PC6, !LED_state);
 
   LED_state = !LED_state;
 }
@@ -137,23 +138,16 @@ void operate_leds(void)
     button_1.toggle_press = false;
   }
 
+  digitalWrite(ON_BOARD_LED, !digitalRead(BTN_1));
+
   if (button_1.short_press)
   {
-    static bool led_state = false;
-
-    if (!led_state)
-    {
-      led_state = true;
-    }
-    else
-    {
-      led_state = false;
-    }
-
-    digitalWrite(PC6, led_state);
+    lcd.setCursor(0, 1); /* Set cursor to column 0 row 0 */
+    lcd.print("Beijinhos");
   }
 
   if (button_1.long_press)
   {
+    lcd.clear();
   }
 }
