@@ -143,7 +143,7 @@ void operate_leds(void)
   if (button_1.short_press)
   {
     lcd.setCursor(0, 1); /* Set cursor to column 0 row 0 */
-    lcd.print("Beijinhos");
+    lcd.print("Hey");
   }
 
   if (button_1.long_press)
